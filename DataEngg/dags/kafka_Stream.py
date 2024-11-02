@@ -49,4 +49,4 @@ def stream_data():
 #         task_id='stream_data_from_api',
 #         python_callable=stream_data,
 #     )
-stream_data()
+# stream_data()
