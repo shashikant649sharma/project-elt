@@ -10,7 +10,7 @@ default_args = {
 
 def get_data():
     import requests
-    
+
     res = requests.get('https://randomuser.me/api/')
     res = res.json()
     res = res['results'][0]
@@ -38,7 +38,7 @@ def fromate_data(res):
 def stream_data():
     import json
     import requests
-
+  
     res = get_data()
     res = fromate_data(res)
     print(json.dumps(res, indent=3))
