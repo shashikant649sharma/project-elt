@@ -37,11 +37,17 @@ def fromate_data(res):
 
 def stream_data():
     import json
-    import requests
+    # import requests
+    from kafka import KafkaProducer
+    import time
 
     res = get_data()
     res = fromate_data(res)
     print(json.dumps(res, indent=3))
+
+    producer = KafkaProducer(bootstrap_servers=['localhost:9092'], max_block_ms=5000)
+
+    producer.send('user_data', json.dumps(res).encode('utf-8'))
 
 
 with DAG('user_automation',
@@ -54,3 +60,4 @@ with DAG('user_automation',
         python_callable=stream_data,
     )
 stream_data()
+ 
